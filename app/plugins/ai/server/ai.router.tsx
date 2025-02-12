@@ -22,21 +22,14 @@ export const AiRouter = Trpc.createRouter({
   generateText: Trpc.procedure
     .input(
       z.object({
-        prompt: z.string(),
+        prompt: z.string().optional(),
         attachmentUrls: z.array(z.string()).optional(),
-        provider: z.enum(['openai', 'gemini']).default('openai'),
+        provider: z.enum(['openai', 'gemini', 'deepseek']),
       }),
     )
     .mutation(async ({ input }) => {
-      const { prompt, attachmentUrls, provider } = input
-
-      const aiService = AiServiceFactory.create(provider)
-
-      const answer = await aiService.generateText({
-        prompt,
-        attachmentUrls,
-      })
-
+      const service = AiServiceFactory.create(input.provider)
+      const answer = await service.generateText(input.prompt || '')
       return { answer }
     }),
 
@@ -50,7 +43,7 @@ export const AiRouter = Trpc.createRouter({
         instruction: z.string(),
         content: z.string(),
         attachmentUrls: z.array(z.string()).optional(),
-        provider: z.enum(['openai', 'gemini']).default('openai'),
+        provider: z.enum(['openai', 'gemini', 'deepseek']).default('deepseek'),
       }),
     )
     .mutation(async ({ input }) => {

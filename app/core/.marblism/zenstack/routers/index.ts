@@ -8,7 +8,7 @@ import createTestRouter from "./Test.router";
 import createQuestionRouter from "./Question.router";
 import createEnrollmentRouter from "./Enrollment.router";
 import createTestAttemptRouter from "./TestAttempt.router";
-import createAiConversationRouter from "./AiConversation.router";
+import createAIConversationRouter from "./AIConversation.router";
 import createDoubtRouter from "./Doubt.router";
 import createDoubtReplyRouter from "./DoubtReply.router";
 import { ClientType as UserClientType } from "./User.router";
@@ -18,7 +18,7 @@ import { ClientType as TestClientType } from "./Test.router";
 import { ClientType as QuestionClientType } from "./Question.router";
 import { ClientType as EnrollmentClientType } from "./Enrollment.router";
 import { ClientType as TestAttemptClientType } from "./TestAttempt.router";
-import { ClientType as AiConversationClientType } from "./AiConversation.router";
+import { ClientType as AIConversationClientType } from "./AIConversation.router";
 import { ClientType as DoubtClientType } from "./Doubt.router";
 import { ClientType as DoubtReplyClientType } from "./DoubtReply.router";
 
@@ -52,7 +52,7 @@ export function createRouter<Config extends BaseConfig>(router: RouterFactory<Co
         question: createQuestionRouter(router, procedure),
         enrollment: createEnrollmentRouter(router, procedure),
         testAttempt: createTestAttemptRouter(router, procedure),
-        aiConversation: createAiConversationRouter(router, procedure),
+        aIConversation: createAIConversationRouter(router, procedure),
         doubt: createDoubtRouter(router, procedure),
         doubtReply: createDoubtReplyRouter(router, procedure),
     }
@@ -67,7 +67,7 @@ export interface ClientType<AppRouter extends AnyRouter> {
     question: QuestionClientType<AppRouter>;
     enrollment: EnrollmentClientType<AppRouter>;
     testAttempt: TestAttemptClientType<AppRouter>;
-    aiConversation: AiConversationClientType<AppRouter>;
+    aIConversation: AIConversationClientType<AppRouter>;
     doubt: DoubtClientType<AppRouter>;
     doubtReply: DoubtReplyClientType<AppRouter>;
 }

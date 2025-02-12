@@ -11,25 +11,25 @@ import type { AnyRouter } from '@trpc/server';
 export default function createRouter<Config extends BaseConfig>(router: RouterFactory<Config>, procedure: ProcBuilder<Config>) {
     return router({
 
-        createMany: procedure.input($Schema.AiConversationInputSchema.createMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aiConversation.createMany(input as any))),
+        createMany: procedure.input($Schema.AIConversationInputSchema.createMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aIConversation.createMany(input as any))),
 
-        create: procedure.input($Schema.AiConversationInputSchema.create).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aiConversation.create(input as any))),
+        create: procedure.input($Schema.AIConversationInputSchema.create).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aIConversation.create(input as any))),
 
-        deleteMany: procedure.input($Schema.AiConversationInputSchema.deleteMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aiConversation.deleteMany(input as any))),
+        deleteMany: procedure.input($Schema.AIConversationInputSchema.deleteMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aIConversation.deleteMany(input as any))),
 
-        delete: procedure.input($Schema.AiConversationInputSchema.delete).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aiConversation.delete(input as any))),
+        delete: procedure.input($Schema.AIConversationInputSchema.delete).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aIConversation.delete(input as any))),
 
-        findFirst: procedure.input($Schema.AiConversationInputSchema.findFirst.optional()).query(({ ctx, input }) => checkRead(db(ctx).aiConversation.findFirst(input as any))),
+        findFirst: procedure.input($Schema.AIConversationInputSchema.findFirst.optional()).query(({ ctx, input }) => checkRead(db(ctx).aIConversation.findFirst(input as any))),
 
-        findMany: procedure.input($Schema.AiConversationInputSchema.findMany.optional()).query(({ ctx, input }) => checkRead(db(ctx).aiConversation.findMany(input as any))),
+        findMany: procedure.input($Schema.AIConversationInputSchema.findMany.optional()).query(({ ctx, input }) => checkRead(db(ctx).aIConversation.findMany(input as any))),
 
-        findUnique: procedure.input($Schema.AiConversationInputSchema.findUnique).query(({ ctx, input }) => checkRead(db(ctx).aiConversation.findUnique(input as any))),
+        findUnique: procedure.input($Schema.AIConversationInputSchema.findUnique).query(({ ctx, input }) => checkRead(db(ctx).aIConversation.findUnique(input as any))),
 
-        updateMany: procedure.input($Schema.AiConversationInputSchema.updateMany).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aiConversation.updateMany(input as any))),
+        updateMany: procedure.input($Schema.AIConversationInputSchema.updateMany).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aIConversation.updateMany(input as any))),
 
-        update: procedure.input($Schema.AiConversationInputSchema.update).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aiConversation.update(input as any))),
+        update: procedure.input($Schema.AIConversationInputSchema.update).mutation(async ({ ctx, input }) => checkMutate(db(ctx).aIConversation.update(input as any))),
 
-        count: procedure.input($Schema.AiConversationInputSchema.count.optional()).query(({ ctx, input }) => checkRead(db(ctx).aiConversation.count(input as any))),
+        count: procedure.input($Schema.AIConversationInputSchema.count.optional()).query(({ ctx, input }) => checkRead(db(ctx).aIConversation.count(input as any))),
 
     }
     );
@@ -38,171 +38,171 @@ export default function createRouter<Config extends BaseConfig>(router: RouterFa
 export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_def']['_config']['$types']['ctx']> {
     createMany: {
 
-        useMutation: <T extends Prisma.AiConversationCreateManyArgs>(opts?: UseTRPCMutationOptions<
-            Prisma.AiConversationCreateManyArgs,
+        useMutation: <T extends Prisma.AIConversationCreateManyArgs>(opts?: UseTRPCMutationOptions<
+            Prisma.AIConversationCreateManyArgs,
             TRPCClientErrorLike<AppRouter>,
             Prisma.BatchPayload,
             Context
         >,) =>
-            Omit<UseTRPCMutationResult<Prisma.BatchPayload, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AiConversationCreateManyArgs>, Context>, 'mutateAsync'> & {
+            Omit<UseTRPCMutationResult<Prisma.BatchPayload, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AIConversationCreateManyArgs>, Context>, 'mutateAsync'> & {
                 mutateAsync:
-                <T extends Prisma.AiConversationCreateManyArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.BatchPayload, Context>) => Promise<Prisma.BatchPayload>
+                <T extends Prisma.AIConversationCreateManyArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.BatchPayload, Context>) => Promise<Prisma.BatchPayload>
             };
 
     };
     create: {
 
-        useMutation: <T extends Prisma.AiConversationCreateArgs>(opts?: UseTRPCMutationOptions<
-            Prisma.AiConversationCreateArgs,
+        useMutation: <T extends Prisma.AIConversationCreateArgs>(opts?: UseTRPCMutationOptions<
+            Prisma.AIConversationCreateArgs,
             TRPCClientErrorLike<AppRouter>,
-            Prisma.AiConversationGetPayload<T>,
+            Prisma.AIConversationGetPayload<T>,
             Context
         >,) =>
-            Omit<UseTRPCMutationResult<Prisma.AiConversationGetPayload<T>, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AiConversationCreateArgs>, Context>, 'mutateAsync'> & {
+            Omit<UseTRPCMutationResult<Prisma.AIConversationGetPayload<T>, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AIConversationCreateArgs>, Context>, 'mutateAsync'> & {
                 mutateAsync:
-                <T extends Prisma.AiConversationCreateArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.AiConversationGetPayload<T>, Context>) => Promise<Prisma.AiConversationGetPayload<T>>
+                <T extends Prisma.AIConversationCreateArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.AIConversationGetPayload<T>, Context>) => Promise<Prisma.AIConversationGetPayload<T>>
             };
 
     };
     deleteMany: {
 
-        useMutation: <T extends Prisma.AiConversationDeleteManyArgs>(opts?: UseTRPCMutationOptions<
-            Prisma.AiConversationDeleteManyArgs,
+        useMutation: <T extends Prisma.AIConversationDeleteManyArgs>(opts?: UseTRPCMutationOptions<
+            Prisma.AIConversationDeleteManyArgs,
             TRPCClientErrorLike<AppRouter>,
             Prisma.BatchPayload,
             Context
         >,) =>
-            Omit<UseTRPCMutationResult<Prisma.BatchPayload, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AiConversationDeleteManyArgs>, Context>, 'mutateAsync'> & {
+            Omit<UseTRPCMutationResult<Prisma.BatchPayload, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AIConversationDeleteManyArgs>, Context>, 'mutateAsync'> & {
                 mutateAsync:
-                <T extends Prisma.AiConversationDeleteManyArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.BatchPayload, Context>) => Promise<Prisma.BatchPayload>
+                <T extends Prisma.AIConversationDeleteManyArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.BatchPayload, Context>) => Promise<Prisma.BatchPayload>
             };
 
     };
     delete: {
 
-        useMutation: <T extends Prisma.AiConversationDeleteArgs>(opts?: UseTRPCMutationOptions<
-            Prisma.AiConversationDeleteArgs,
+        useMutation: <T extends Prisma.AIConversationDeleteArgs>(opts?: UseTRPCMutationOptions<
+            Prisma.AIConversationDeleteArgs,
             TRPCClientErrorLike<AppRouter>,
-            Prisma.AiConversationGetPayload<T>,
+            Prisma.AIConversationGetPayload<T>,
             Context
         >,) =>
-            Omit<UseTRPCMutationResult<Prisma.AiConversationGetPayload<T>, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AiConversationDeleteArgs>, Context>, 'mutateAsync'> & {
+            Omit<UseTRPCMutationResult<Prisma.AIConversationGetPayload<T>, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AIConversationDeleteArgs>, Context>, 'mutateAsync'> & {
                 mutateAsync:
-                <T extends Prisma.AiConversationDeleteArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.AiConversationGetPayload<T>, Context>) => Promise<Prisma.AiConversationGetPayload<T>>
+                <T extends Prisma.AIConversationDeleteArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.AIConversationGetPayload<T>, Context>) => Promise<Prisma.AIConversationGetPayload<T>>
             };
 
     };
     findFirst: {
 
-        useQuery: <T extends Prisma.AiConversationFindFirstArgs, TData = Prisma.AiConversationGetPayload<T>>(
-            input?: Prisma.SelectSubset<T, Prisma.AiConversationFindFirstArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.AiConversationGetPayload<T>, TData, Error>
+        useQuery: <T extends Prisma.AIConversationFindFirstArgs, TData = Prisma.AIConversationGetPayload<T>>(
+            input?: Prisma.SelectSubset<T, Prisma.AIConversationFindFirstArgs>,
+            opts?: UseTRPCQueryOptions<string, T, Prisma.AIConversationGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
-        useInfiniteQuery: <T extends Prisma.AiConversationFindFirstArgs>(
-            input?: Omit<Prisma.SelectSubset<T, Prisma.AiConversationFindFirstArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.AiConversationGetPayload<T>, Error>
+        useInfiniteQuery: <T extends Prisma.AIConversationFindFirstArgs>(
+            input?: Omit<Prisma.SelectSubset<T, Prisma.AIConversationFindFirstArgs>, 'cursor'>,
+            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.AIConversationGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
-            Prisma.AiConversationGetPayload<T>,
+            Prisma.AIConversationGetPayload<T>,
             TRPCClientErrorLike<AppRouter>
         >;
 
     };
     findMany: {
 
-        useQuery: <T extends Prisma.AiConversationFindManyArgs, TData = Array<Prisma.AiConversationGetPayload<T>>>(
-            input?: Prisma.SelectSubset<T, Prisma.AiConversationFindManyArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Array<Prisma.AiConversationGetPayload<T>>, TData, Error>
+        useQuery: <T extends Prisma.AIConversationFindManyArgs, TData = Array<Prisma.AIConversationGetPayload<T>>>(
+            input?: Prisma.SelectSubset<T, Prisma.AIConversationFindManyArgs>,
+            opts?: UseTRPCQueryOptions<string, T, Array<Prisma.AIConversationGetPayload<T>>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
-        useInfiniteQuery: <T extends Prisma.AiConversationFindManyArgs>(
-            input?: Omit<Prisma.SelectSubset<T, Prisma.AiConversationFindManyArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Array<Prisma.AiConversationGetPayload<T>>, Error>
+        useInfiniteQuery: <T extends Prisma.AIConversationFindManyArgs>(
+            input?: Omit<Prisma.SelectSubset<T, Prisma.AIConversationFindManyArgs>, 'cursor'>,
+            opts?: UseTRPCInfiniteQueryOptions<string, T, Array<Prisma.AIConversationGetPayload<T>>, Error>
         ) => UseTRPCInfiniteQueryResult<
-            Array<Prisma.AiConversationGetPayload<T>>,
+            Array<Prisma.AIConversationGetPayload<T>>,
             TRPCClientErrorLike<AppRouter>
         >;
 
     };
     findUnique: {
 
-        useQuery: <T extends Prisma.AiConversationFindUniqueArgs, TData = Prisma.AiConversationGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.AiConversationFindUniqueArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.AiConversationGetPayload<T>, TData, Error>
+        useQuery: <T extends Prisma.AIConversationFindUniqueArgs, TData = Prisma.AIConversationGetPayload<T>>(
+            input: Prisma.SelectSubset<T, Prisma.AIConversationFindUniqueArgs>,
+            opts?: UseTRPCQueryOptions<string, T, Prisma.AIConversationGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
-        useInfiniteQuery: <T extends Prisma.AiConversationFindUniqueArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.AiConversationFindUniqueArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.AiConversationGetPayload<T>, Error>
+        useInfiniteQuery: <T extends Prisma.AIConversationFindUniqueArgs>(
+            input: Omit<Prisma.SelectSubset<T, Prisma.AIConversationFindUniqueArgs>, 'cursor'>,
+            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.AIConversationGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
-            Prisma.AiConversationGetPayload<T>,
+            Prisma.AIConversationGetPayload<T>,
             TRPCClientErrorLike<AppRouter>
         >;
 
     };
     updateMany: {
 
-        useMutation: <T extends Prisma.AiConversationUpdateManyArgs>(opts?: UseTRPCMutationOptions<
-            Prisma.AiConversationUpdateManyArgs,
+        useMutation: <T extends Prisma.AIConversationUpdateManyArgs>(opts?: UseTRPCMutationOptions<
+            Prisma.AIConversationUpdateManyArgs,
             TRPCClientErrorLike<AppRouter>,
             Prisma.BatchPayload,
             Context
         >,) =>
-            Omit<UseTRPCMutationResult<Prisma.BatchPayload, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AiConversationUpdateManyArgs>, Context>, 'mutateAsync'> & {
+            Omit<UseTRPCMutationResult<Prisma.BatchPayload, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AIConversationUpdateManyArgs>, Context>, 'mutateAsync'> & {
                 mutateAsync:
-                <T extends Prisma.AiConversationUpdateManyArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.BatchPayload, Context>) => Promise<Prisma.BatchPayload>
+                <T extends Prisma.AIConversationUpdateManyArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.BatchPayload, Context>) => Promise<Prisma.BatchPayload>
             };
 
     };
     update: {
 
-        useMutation: <T extends Prisma.AiConversationUpdateArgs>(opts?: UseTRPCMutationOptions<
-            Prisma.AiConversationUpdateArgs,
+        useMutation: <T extends Prisma.AIConversationUpdateArgs>(opts?: UseTRPCMutationOptions<
+            Prisma.AIConversationUpdateArgs,
             TRPCClientErrorLike<AppRouter>,
-            Prisma.AiConversationGetPayload<T>,
+            Prisma.AIConversationGetPayload<T>,
             Context
         >,) =>
-            Omit<UseTRPCMutationResult<Prisma.AiConversationGetPayload<T>, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AiConversationUpdateArgs>, Context>, 'mutateAsync'> & {
+            Omit<UseTRPCMutationResult<Prisma.AIConversationGetPayload<T>, TRPCClientErrorLike<AppRouter>, Prisma.SelectSubset<T, Prisma.AIConversationUpdateArgs>, Context>, 'mutateAsync'> & {
                 mutateAsync:
-                <T extends Prisma.AiConversationUpdateArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.AiConversationGetPayload<T>, Context>) => Promise<Prisma.AiConversationGetPayload<T>>
+                <T extends Prisma.AIConversationUpdateArgs>(variables: T, opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.AIConversationGetPayload<T>, Context>) => Promise<Prisma.AIConversationGetPayload<T>>
             };
 
     };
     count: {
 
-        useQuery: <T extends Prisma.AiConversationCountArgs, TData = 'select' extends keyof T
+        useQuery: <T extends Prisma.AIConversationCountArgs, TData = 'select' extends keyof T
             ? T['select'] extends true
             ? number
-            : Prisma.GetScalarType<T['select'], Prisma.AiConversationCountAggregateOutputType>
+            : Prisma.GetScalarType<T['select'], Prisma.AIConversationCountAggregateOutputType>
             : number>(
-                input?: Prisma.Subset<T, Prisma.AiConversationCountArgs>,
+                input?: Prisma.Subset<T, Prisma.AIConversationCountArgs>,
                 opts?: UseTRPCQueryOptions<string, T, 'select' extends keyof T
                     ? T['select'] extends true
                     ? number
-                    : Prisma.GetScalarType<T['select'], Prisma.AiConversationCountAggregateOutputType>
+                    : Prisma.GetScalarType<T['select'], Prisma.AIConversationCountAggregateOutputType>
                     : number, TData, Error>
             ) => UseTRPCQueryResult<
                 TData,
                 TRPCClientErrorLike<AppRouter>
             >;
-        useInfiniteQuery: <T extends Prisma.AiConversationCountArgs>(
-            input?: Omit<Prisma.Subset<T, Prisma.AiConversationCountArgs>, 'cursor'>,
+        useInfiniteQuery: <T extends Prisma.AIConversationCountArgs>(
+            input?: Omit<Prisma.Subset<T, Prisma.AIConversationCountArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<string, T, 'select' extends keyof T
                 ? T['select'] extends true
                 ? number
-                : Prisma.GetScalarType<T['select'], Prisma.AiConversationCountAggregateOutputType>
+                : Prisma.GetScalarType<T['select'], Prisma.AIConversationCountAggregateOutputType>
                 : number, Error>
         ) => UseTRPCInfiniteQueryResult<
             'select' extends keyof T
             ? T['select'] extends true
             ? number
-            : Prisma.GetScalarType<T['select'], Prisma.AiConversationCountAggregateOutputType>
+            : Prisma.GetScalarType<T['select'], Prisma.AIConversationCountAggregateOutputType>
             : number,
             TRPCClientErrorLike<AppRouter>
         >;

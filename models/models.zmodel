@@ -20,7 +20,7 @@ model User {
 
     enrollments     Enrollment[]     @relation("user")
     testAttempts    TestAttempt[]    @relation("user")
-    aiConversations AiConversation[] @relation("user")
+    aiConversations AIConversation[] @relation("user")
     doubts          Doubt[]          @relation("user")
     doubtReplys     DoubtReply[]     @relation("user")
 
@@ -129,20 +129,17 @@ model TestAttempt {
     @@allow("all", true)
 }
 
-model AiConversation {
-
-    id        String   @id @default(uuid())
-    query     String?
-    response  String?
+model AIConversation {
+    id        String   @id @default(cuid())
+    query     String
+    response  String
     imageUrl  String?
-    timestamp String
+    timestamp DateTime
+    model     String?
+    user      User     @relation("user", fields: [userId], references: [id])
+    userId    String
 
-    userId    String?
-    user      User?    @relation(fields: [userId], references: [id], name: "user")
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt @default(now())
-    @@allow("all", true)
+    @@allow('all', true)
 }
 
 model Doubt {

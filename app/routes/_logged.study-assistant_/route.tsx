@@ -1,39 +1,40 @@
+import { useUserContext } from '@/core/context'
+import { Api } from '@/core/trpc'
+import { PageLayout } from '@/designSystem'
+import { useUploadPublic } from '@/plugins/upload/client'
 import {
-  Typography,
-  Input,
   Button,
   Card,
-  List,
-  Upload,
-  Space,
   Divider,
+  Input,
+  List,
+  Select,
+  Space,
+  Typography,
+  Upload,
 } from 'antd'
+import dayjs from 'dayjs'
 import { useState } from 'react'
 const { Title, Text, Paragraph } = Typography
 const { TextArea } = Input
-import { useUserContext } from '@/core/context'
-import dayjs from 'dayjs'
-import { useLocation, useNavigate, useParams } from '@remix-run/react'
-import { useUploadPublic } from '@/plugins/upload/client'
-import { Api } from '@/core/trpc'
-import { PageLayout } from '@/designSystem'
 
 export default function AIStudyAssistantPage() {
   const { user } = useUserContext()
   const [question, setQuestion] = useState('')
   const [imageFile, setImageFile] = useState<File | null>(null)
+  const [selectedModel, setSelectedModel] = useState('deepseek')
 
   // API Hooks
   const { mutateAsync: uploadFile } = useUploadPublic()
   const { mutateAsync: generateAnswer } = Api.ai.generateText.useMutation()
-  const { data: conversations, refetch } = Api.aiConversation.findMany.useQuery(
+  const { data: conversations, refetch } = Api.aIConversation.findMany.useQuery(
     {
       where: { userId: user?.id },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { timestamp: 'desc' },
     },
   )
   const { mutateAsync: saveConversation } =
-    Api.aiConversation.create.useMutation()
+    Api.aIConversation.create.useMutation()
 
   // Handle question submission
   const handleAskQuestion = async () => {
@@ -46,7 +47,10 @@ export default function AIStudyAssistantPage() {
         imageUrl = uploadResult.url
       }
 
-      const aiResponse = await generateAnswer({ prompt: question })
+      const aiResponse = await generateAnswer({
+        prompt: question,
+        provider: selectedModel as 'openai' | 'gemini' | 'deepseek',
+      })
 
       await saveConversation({
         data: {
@@ -54,7 +58,12 @@ export default function AIStudyAssistantPage() {
           response: aiResponse.answer,
           imageUrl: imageUrl || null,
           timestamp: new Date().toISOString(),
-          userId: user?.id,
+          model: selectedModel,
+          user: {
+            connect: {
+              id: user?.id,
+            },
+          },
         },
       })
 
@@ -91,6 +100,16 @@ export default function AIStudyAssistantPage() {
             />
 
             <Space>
+              <Select
+                value={selectedModel}
+                onChange={setSelectedModel}
+                style={{ width: 150 }}
+                options={[
+                  { label: 'Deepseek', value: 'deepseek' },
+                  { label: 'GPT-4', value: 'openai' },
+                ]}
+              />
+
               <Upload
                 beforeUpload={file => {
                   setImageFile(file)
@@ -120,7 +139,13 @@ export default function AIStudyAssistantPage() {
         <List
           itemLayout="vertical"
           dataSource={conversations}
-          renderItem={conversation => (
+          renderItem={(conversation: {
+            query: string
+            response: string
+            imageUrl?: string
+            timestamp: Date
+            model?: string
+          }) => (
             <Card style={{ marginBottom: 16 }}>
               <Space
                 direction="vertical"
@@ -145,13 +170,14 @@ export default function AIStudyAssistantPage() {
                 <div>
                   <Text strong>
                     <i className="las la-comment"></i> Answer:
+                    {conversation.model === 'openai' ? 'GPT-4' : 'Deepseek'}
                   </Text>
                   <Paragraph>{conversation.response}</Paragraph>
                 </div>
 
                 <Text type="secondary">
                   <i className="las la-clock"></i>
-                  {dayjs(conversation.createdAt).format('MMMM D, YYYY h:mm A')}
+                  {dayjs(conversation.timestamp).format('MMMM D, YYYY h:mm A')}
                 </Text>
               </Space>
             </Card>

@@ -5,7 +5,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "init": "pnpm install && pnpm run docker:init ; pnpm run env:init ; pnpm run crud:sync && pnpm run database:sync:dev && pnpm run database:seed",
+    "init": "pnpm install && pnpm run docker:init && pnpm run env:init && pnpm run crud:sync && pnpm run database:sync:dev && pnpm run database:seed",
     "dev": "rm -rf build && rm -rf node_modules/.vite && tsx server/index.ts",
     "debug": "NODE_OPTIONS=--inspect-brk tsx server/index.ts",
     "start": "PORT=8099 NODE_ENV=production node ./build/server/index.js",
